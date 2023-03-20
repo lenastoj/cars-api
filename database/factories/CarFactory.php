@@ -23,7 +23,7 @@ class CarFactory extends Factory
             'max_speed' => $this->faker->numberBetween(160, 260),
             'is_automatic' => $this->faker->boolean(),
             'engine' => $this->faker->randomElement(['petrol', 'diesel', 'hybrid', 'electric']),
-            'number_of_doors' => $this->faker->randomElement([3, 5])
+            'number_of_doors' => $this->faker->randomElement([2, 3, 5])
         ];
     }
 }
