@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = $request->query('per_page', '');
+        $per_page = $request->query('per_page', 10);
         $page = $request->query('page', '');
 
         $brand = $request->query('brand', '');
@@ -22,7 +22,8 @@ class CarController extends Controller
 
         // $cars = Car::paginate($per_page = 5, $columns = ['*'], $pageName = 'page', $page = 3);
         // $cars = Car::paginate($per_page, ['*'],'page', $page);
-
+        // $cars = Car::all();
+        
         $cars = Car::searchByBrand($brand)
         ->searchByModel($model) 
         ->paginate($per_page, ['*'],'page', $page);
