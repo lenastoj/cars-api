@@ -12,9 +12,14 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::all();
+        $per_page = $request->query('per_page', 5);
+        $page = $request->query('page', 3);
+
+        // $cars = Car::paginate($per_page = 5, $columns = ['*'], $pageName = 'page', $page = 3);
+        $cars = Car::paginate($per_page, ['*'],'page', $page);
+
         return response()->json($cars);
     }
 
@@ -23,7 +28,7 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        
+
         $car = Car::create($request->validated());
 
         return response()->json($car);
