@@ -22,11 +22,12 @@ class CarController extends Controller
 
         // $cars = Car::paginate($per_page = 5, $columns = ['*'], $pageName = 'page', $page = 3);
         // $cars = Car::paginate($per_page, ['*'],'page', $page);
-        // $cars = Car::all();
+        $cars = Car::all();
         
-        $cars = Car::searchByBrand($brand)
-        ->searchByModel($model) 
-        ->paginate($per_page, ['*'],'page', $page);
+        // $cars = Car::searchByBrand($brand)
+        // ->searchByModel($model) 
+        // ->paginate($per_page, ['*'],'page', $page);
+        // ->all();
 
         return response()->json($cars);
     }
