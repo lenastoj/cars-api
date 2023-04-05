@@ -8,19 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request) {
         $data = $request->validated();
-        $data['password'] = Hash::make($data['password']);
+        $data['password'] =Hash::make($data['password']);
         $user = User::create($data);
 
         $token = Auth::login($user);
-
+        
         return response()->json([
             'token' => $token,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -35,8 +36,9 @@ class AuthController extends Controller
                 'user' => Auth::user(),
             ]);
         } else {
-            return response()->json(
-                ['message' =>'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
+            return response()->json([
+                'message' => 'Invalid credentials'
+            ], Response::HTTP_UNAUTHORIZED);
         }
     }
 

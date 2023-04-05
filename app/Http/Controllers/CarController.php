@@ -14,11 +14,11 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = $request->query('per_page', 10);
-        $page = $request->query('page', '');
+        // $per_page = $request->query('per_page', 10);
+        // $page = $request->query('page', '');
 
-        $brand = $request->query('brand', '');
-        $model = $request->query('model', '');
+        // $brand = $request->query('brand', '');
+        // $model = $request->query('model', '');
 
         // $cars = Car::paginate($per_page = 5, $columns = ['*'], $pageName = 'page', $page = 3);
         // $cars = Car::paginate($per_page, ['*'],'page', $page);
@@ -28,6 +28,9 @@ class CarController extends Controller
         // ->searchByModel($model) 
         // ->paginate($per_page, ['*'],'page', $page);
         // ->all();
+
+        
+        // $cars = Car::paginate($per_page);
 
         return response()->json($cars);
     }
